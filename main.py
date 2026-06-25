@@ -13,7 +13,7 @@ ADMIN_ID = 1590653771  # Seu ID de administrador
 USERS_FILE = "usuarios.json"  # Arquivo para salvar os IDs dos usuários
 
 # ⚠️ SUBSTITUA PELO LINK DIRETO DA SUA IMAGEM (URL .jpg, .png, etc)
-START_IMAGE_URL = "https://i.imgur.com/SEU_LINK_AQUI.png"
+START_IMAGE_URL = "https://i.imgur.com/EUqzUNq.jpeg"
 
 # Configuração de logging
 logging.basicConfig(
