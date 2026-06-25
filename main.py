@@ -67,7 +67,7 @@ async def start(update: Update, context) -> None:
 
     caption = (
         "🍪 𝗖𝗵𝗲𝗰𝗸𝗲𝗿 𝗡𝗲𝘁𝗳𝗹𝗶𝘅 𝗖𝗼𝗼𝗸𝗶𝗲𝘀\n\n"
-        "📨 Envie Cookies em 𝗧𝗲𝘅𝘁𝗼 ou .𝗝𝘀𝗼𝗻 / .𝗧𝘅𝘁\n"
+        "📨 Envie Cookies em 𝗧𝗲𝘅𝘁𝗼 ou 𝗔𝗿𝗾𝘂𝗶𝘃𝗼 .𝘁𝘅𝘁\n"
         "❓ Suporte: @tearsofmoney7\n\n"
         ""
     )
