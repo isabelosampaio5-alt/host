@@ -742,22 +742,22 @@ async def cmd_list_cookies(update: Update, context: ContextTypes.DEFAULT_TYPE) -
 
     saved = load_saved_cookies()
     if not saved:
-        msg = "📭 Nenhum cookie salvo ainda."
+        msg = "0 cookies disponível 😶"
     else:
-        msg = f"<b>🍪 Cookies Salvos: {len(saved)}</b>\n\n"
+        msg = f"<b>🍪 Cookies Disponíveis: {len(saved)}</b>\n\n"
         for i, entry in enumerate(saved):
             # Verifica o status
             info = get_netflix_info(entry['cookies'])
             status_emoji = "✅" if info['status'] == 'Ativo' else "❌"
             msg += f"<b>#{entry['id']}</b> {status_emoji} {entry['netflix_id']}\n"
 
-        msg += "\n<i>Use /cookie [ID] para ver detalhes</i>"
+        msg += "\n<i>Use /cookie [1,2,3,4,5] para ter acesso</i>"
 
     await update.message.reply_text(msg, parse_mode='HTML')
 
 
 async def cmd_cookie_detail(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Mostra detalhes de um cookie específico."""
+    """Mostra infos de um cookie"""
     user_id = update.effective_user.id
 
     if not context.args:
@@ -767,7 +767,7 @@ async def cmd_cookie_detail(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     try:
         cookie_id = int(context.args[0])
     except:
-        await update.message.reply_text("❌ ID inválido.")
+        await update.message.reply_text("número inválido pae")
         return
 
     saved = load_saved_cookies()
