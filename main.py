@@ -1015,7 +1015,7 @@ async def handle_text_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 def main():
     """Função principal que inicia o bot."""
-    token = "8770780999:AAESX1POdCwamnlPqg59a5e_kj9KdHCmv6M"
+    token = "8770780999:AAEwZIJ-MD641nZ4s-txiLmXNWa8skxruNg"
     app = Application.builder().token(token).build()
 
     # Handlers de comandos gerais
