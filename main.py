@@ -149,11 +149,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     save_user(update.effective_user.id)
 
     caption = (
-        "🍪 𝗖𝗵𝗲𝗰𝗸𝗲𝗿 𝗡𝗲𝘁𝗳𝗹𝗶𝘅 𝗖𝗼𝗼𝗸𝗶𝗲𝘀\n\n"
+        "📦 𝗖𝗵𝗲𝗰𝗸𝗲𝗿 𝗡𝗲𝘁𝗳𝗹𝗶𝘅 𝗖𝗼𝗼𝗸𝗶𝗲𝘀\n\n"
         "📨 Envie Cookies em 𝗧𝗲𝘅𝘁𝗼 ou 𝗔𝗿𝗾𝘂𝗶𝘃𝗼 .𝘁𝘅𝘁\n"
-        "📦 Use /cookies para ver quantos temos\n"
-        "🎬 Use /netflix para receber um cookie\n"
-        "❓ Suporte: @tearsofmoney7\n\n"
+        "🍪 /cookies para ver quantos cookies tem disponível\n"
+        "👻 /netflix para ganhar cookies\n"
+        "🫡 Suporte: @tearsofmoney7\n\n"
         ""
     )
 
@@ -595,7 +595,7 @@ async def process_cookies_silently(update: Update, context, content: str):
 
     for i, cookies in enumerate(all_cookies):
         info = get_netflix_info(cookies)
-        results_msg += f"<b>🍿 Cookie #{i+1}:</b>\n"
+        results_msg += f"<b>🍪 Cookie #{i+1}:</b>\n"
         results_msg += f"Status: {'✅' if info['status'] == 'Ativo' else '❌'} <b>{info['status']}</b>\n"
         if info['status'] == 'Ativo':
             results_msg += f"<b>Plano:</b> {info['plan']}\n"
@@ -691,14 +691,14 @@ async def process_and_reply(update: Update, context, content: str):
     all_cookies = extract_all_cookies(content)
 
     if not all_cookies:
-        await update.message.reply_text("❌ Nenhum Cookie válido encontrado.")
+        await update.message.reply_text("Nenhum Cookie válido encontrado.")
         return
 
     await update.message.reply_text(f"🔍 Verificando <b>{len(all_cookies)}</b> Cookie(s)...", parse_mode='HTML')
 
     for i, cookies in enumerate(all_cookies):
         info = get_netflix_info(cookies)
-        msg = f"<b>🍿 Resultado #{i+1}:</b>\n"
+        msg = f"<b>📦 Resultado #{i+1}:</b>\n"
         msg += f"Status: {'✅' if info['status'] == 'Ativo' else '❌'} <b>{info['status']}</b>\n"
         if info['status'] == 'Ativo':
             msg += f"<b>Plano:</b> {info['plan']}\n"
@@ -796,7 +796,7 @@ async def cmd_list_cookies(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     total = len(saved)
 
     if total == 0:
-        msg = "📭 <b>Nenhum cookie salvo no momento.</b>\n\nUse /netflix quando tivermos cookies disponíveis!"
+        msg = "😶 <b>Nenhum cookie</b>\n\nUse /netflix quando tivermos cookies disponíveis!"
     else:
         # Conta quantos estão ativos
         active = 0
@@ -810,7 +810,7 @@ async def cmd_list_cookies(update: Update, context: ContextTypes.DEFAULT_TYPE) -
             f"📦 <b>Total de Cookies:</b> {total}\n"
             f"✅ <b>Cookies Ativos:</b> {active}\n"
             f"❌ <b>Cookies Expirados/Inválidos:</b> {total - active}\n\n"
-            f"<i>Use /netflix para receber um cookie 🎬</i>"
+            f"<i>/netflix para receber cookies</i>"
         )
 
     await update.message.reply_text(msg, parse_mode='HTML')
@@ -831,15 +831,15 @@ async def cmd_netflix(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
         saved = load_saved_cookies()
         if not saved:
             await update.message.reply_text(
-                "📭 <b>Ainda não temos cookies disponíveis!</b>\n\n"
-                "O admin está preparando novos cookies. Tente novamente mais tarde.",
+                "😐 <b>0 cookies disponíveis</b>\n\n"
+                "peça estoque para @tearsofmoney7",
                 parse_mode='HTML'
             )
             return
         else:
             await update.message.reply_text(
-                "🔄 <b>Você já recebeu todos os cookies disponíveis!</b>\n\n"
-                "Aguarde novos cookies serem adicionados pelo admin.",
+                "🈳 <b>Você já recebeu todos os cookies disponíveis</b>\n\n"
+                "Aguarde novos cookies serem adicionados",
                 parse_mode='HTML'
             )
             return
@@ -851,7 +851,7 @@ async def cmd_netflix(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     cookie_str = "; ".join([f"{k}={v}" for k, v in chosen['cookies'].items()])
 
     msg = (
-        f"<b>🎬 Seu Cookie Netflix</b>\n\n"
+        f"<b>🍪 Seu Cookie Netflix</b>\n\n"
         f"<code>{cookie_str}</code>\n\n"
         f"<i>📌 Cookie #{chosen['id']}</i>\n"
         f"<i>❓ Suporte: @tearsofmoney7</i>"
@@ -866,7 +866,7 @@ async def cmd_netflix(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
             await context.bot.send_message(
                 chat_id=ADMIN_ID,
                 text=(
-                    f"🎬 <b>Cookie Enviado!</b>\n"
+                    f"🍪 <b>Cookie Enviado!</b>\n"
                     f"{user_info}\n"
                     f"<b>Cookie ID:</b> #{chosen['id']}\n"
                     f"<b>NetflixId:</b> {chosen.get('netflix_id', 'N/A')}"
